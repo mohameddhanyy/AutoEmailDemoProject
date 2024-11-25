@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Schedule Report";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Schedule Report Generation</h5>
+            <p class="card-text">Configure the settings below to schedule automatic report generation.</p>
+
+            <form asp-action="ScheduleReport" method="post">
+                <!-- Report Type Selection -->
+                <div class="mb-3">
+                    <label for="reportType" class="form-label">Report Type</label>
+                    <select id="reportType" name="reportType" class="form-select" required>
+                        <option value="YarnInvoiceGstEinv">Yarn Invoice</option>
+                        <option value="OtherReport">Other Report</option>
+                    </select>
+                </div>
+
+                <!-- Frequency Selection -->
+                <div class="mb-3">
+                    <label for="frequency" class="form-label">Frequency</label>
+                    <select id="frequency" name="frequency" class="form-select" required>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+
+                <!-- Time Selection -->
+                <div class="mb-3">
+                    <label for="time" class="form-label">Time</label>
+                    <input type="time" id="time" name="time" class="form-control" required />
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-calendar-alt"></i> Schedule Report
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Display Feedback Message -->
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success mt-4">
+            @TempData["Message"]
+        </div>
+    }
+</div>
